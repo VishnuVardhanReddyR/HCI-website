@@ -1,43 +1,565 @@
 <!DOCTYPE html>
-<html class="wide wow-animation" lang="en">
+<html class="" lang="en">
+
 <head>
-    <title>Home</title>
+    <title>CS5760 - Vishnu Rapuru</title>
     <meta name="format-detection" content="telephone=no">
-    <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+    <meta name="viewport"
+        content="width=device-width height=device-height initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
     <!-- Stylesheets-->
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Work+Sans:300,700,800%7COswald:300,400,500">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css" id="main-styles-link">
+    <link rel="stylesheet" type="text/css"
+        href="//fonts.googleapis.com/css?family=Work+Sans:300,700,800%7COswald:300,400,500">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 </head>
+
 <body>
-    <header class="text-gray-600 body-font">
-        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
-                <span class="ml-3 text-xl">Tailblocks</span>
-            </a>
-            <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-                <a class="mr-5 hover:text-gray-900">First Link</a>
-                <a class="mr-5 hover:text-gray-900">Second Link</a>
-                <a class="mr-5 hover:text-gray-900">Third Link</a>
-                <a class="mr-5 hover:text-gray-900">Fourth Link</a>
-            </nav>
-            <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-            </button>
+    <!-- ====== Navbar Section Start -->
+    <header x-data="
+      {
+        navbarOpen: false,
+      }
+    " class="absolute left-0 top-0 z-50 w-full">
+        <div class="container mx-auto">
+            <div class="relative -mx-4 flex items-center justify-between">
+                <div class="w-60 max-w-full px-4">
+                    <a href="javascript:void(0)" class="flex w-full py-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                        </svg>
+                        <h1 class="text-blue-500">vrapuru@mtu.edu</h1>
+                    </a>
+                </div>
+                <div class="flex w-full items-center justify-between px-4">
+                    <div>
+                        <button @click="navbarOpen = !navbarOpen" :class="navbarOpen && 'navbarTogglerActive'"
+                            id="navbarToggler"
+                            class="ring-primary absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] focus:ring-2 lg:hidden">
+                            <span class="bg-body-color relative my-[6px] block h-[2px] w-[30px]"></span>
+                            <span class="bg-body-color relative my-[6px] block h-[2px] w-[30px]"></span>
+                            <span class="bg-body-color relative my-[6px] block h-[2px] w-[30px]"></span>
+                        </button>
+                        <nav x-transition :class="!navbarOpen && 'hidden'" id="navbarCollapse"
+                            class="absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white py-5 px-6 shadow transition-all lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none">
+                            <ul class="block lg:flex">
+                                <li>
+                                    <a href="#home"
+                                        class="text-dark hover:text-primary flex py-2 text-base font-medium lg:ml-12 lg:inline-flex">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#assignments"
+                                        class="text-dark hover:text-primary flex py-2 text-base font-medium lg:ml-12 lg:inline-flex">
+                                        Assignments
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#team"
+                                        class="text-dark hover:text-primary flex py-2 text-base font-medium lg:ml-12 lg:inline-flex">
+                                        Team
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
+                        <a href="javascript:void(0)"
+                            class="text-dark hover:text-primary py-3 px-7 text-base font-medium">
+                            Login
+                        </a>
+                        <a href="javascript:void(0)"
+                            class="bg-primary rounded-lg py-3 px-7 text-base font-medium text-white hover:bg-opacity-90">
+                            Sign Up
+                        </a>
+                    </div> -->
+                </div>
+            </div>
         </div>
     </header>
+    <!-- ====== Navbar Section End -->
+
+    <!-- ====== Hero Section Start -->
+    <div class="relative bg-white pt-[120px] pb-[110px] lg:pt-[150px]" id="home">
+        <div class="container mx-auto">
+            <div class="-mx-4 flex flex-wrap">
+                <div class="w-full px-4 lg:w-5/12">
+                    <div class="hero-content">
+                        <h1
+                            class="text-dark mb-3 text-4xl font-bold leading-snug sm:text-[42px] lg:text-[40px] xl:text-[42px]">
+                            Team 7 <br />
+                            Esports Stats <br />
+                            Web Application.
+                        </h1>
+                        <p class="text-body-color mb-8 max-w-[480px] text-base">
+                            This application aims to provide tools to the Esports statistician and players to
+                            track stats across matches and tournaments for Super Smash Bros Ultimate<sup>TM</sup>. The
+                            app
+                            will provide an interface that allows players to quickly update their match results and
+                            view their stats and match history. The app will allow the statistician and players to track
+                            player progression and performance over time.
+                        </p>
+                    </div>
+                </div>
+                <div class="hidden px-4 lg:block lg:w-1/12"></div>
+                <div class="w-full px-4 lg:w-6/12">
+                    <div class="lg:ml-auto lg:text-right">
+                        <div class="relative z-10 inline-block pt-11 lg:pt-0">
+                            <img src="https://images2.alphacoders.com/927/927337.png" alt="hero"
+                                class="max-w-full lg:ml-auto rounded-3xl hover:" />
+                            <span class="absolute -left-8 -bottom-8 z-[-1]">
+                                <svg width="93" height="93" viewBox="0 0 93 93" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="2.5" cy="2.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="2.5" cy="24.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="2.5" cy="46.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="2.5" cy="68.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="2.5" cy="90.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="24.5" cy="2.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="24.5" cy="24.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="24.5" cy="46.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="24.5" cy="68.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="24.5" cy="90.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="46.5" cy="2.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="46.5" cy="24.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="46.5" cy="46.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="46.5" cy="68.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="46.5" cy="90.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="68.5" cy="2.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="68.5" cy="24.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="68.5" cy="46.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="68.5" cy="68.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="68.5" cy="90.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="90.5" cy="2.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="90.5" cy="24.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="90.5" cy="46.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="90.5" cy="68.5" r="2.5" fill="#3056D3" />
+                                    <circle cx="90.5" cy="90.5" r="2.5" fill="#3056D3" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ====== Hero Section End -->
+
+    <section class="text-gray-600 body-font" id="Assignments">
+        <div class="container px-5 mx-auto">
+            <div class="flex flex-col text-center w-full mb-20">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Evaluation Assignments</h1>
+                <div class="h-1 bg-gray-200 rounded overflow-hidden flex justify-center" bis_skin_checked="1">
+                    <div class="w-72 h-full bg-blue-500" bis_skin_checked="1"></div>
+                </div>
+                <!-- <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn
+                    asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.
+                </p> -->
+            </div>
+            <div class="flex flex-wrap -m-2">
+                <div class="group p-2 lg:w-1/3 md:w-1/2 w-full cursor-pointer">
+                    <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+                        <a href="documents/UserGoalDocument.pdf" target="_blank" class="group flex">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                            <div class="flex-grow">
+                                <h2 class="text-gray-900 title-font font-medium group-hover:text-lg duration-300">
+                                    User
+                                    Goal Document
+                                </h2>
+                                <div class="flex">
+                                    <p class="text-green-500 text-xs">Submitted on Jan 24, 2023</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                    <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+                        <a href="documents/DesignSupportDocument.pdf" target="_blank" class="group flex">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                            <div class="flex-grow">
+
+                                <h2 class="text-gray-900 title-font font-medium group-hover:text-lg duration-300">Design
+                                    Support Documents</h2>
+                                <div class="flex">
+                                    <p class="text-green-500 text-xs">Submitted on 31st Jan, 2023</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                    <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                        <div class="flex-grow">
+                            <h2 class="text-gray-900 title-font font-medium">Heuristic Evaluation</h2>
+                            <div class="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p class="text-gray-500 text-xs">Coming soon</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                    <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                        <div class="flex-grow">
+                            <h2 class="text-gray-900 title-font font-medium">Usability Test Schedule</h2>
+                            <div class="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p class="text-gray-500 text-xs">Coming soon</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                    <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                        <div class="flex-grow">
+                            <h2 class="text-gray-900 title-font font-medium">Usability Test Plan</h2>
+                            <div class="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p class="text-gray-500 text-xs">Coming soon</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                    <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                        <div class="flex-grow">
+                            <h2 class="text-gray-900 title-font font-medium">Usability Test Practise</h2>
+                            <div class="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p class="text-gray-500 text-xs">Coming soon</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                    <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                        <div class="flex-grow">
+                            <h2 class="text-gray-900 title-font font-medium">Usability Testing</h2>
+                            <div class="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p class="text-gray-500 text-xs">Coming soon</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                    <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                        <div class="flex-grow">
+                            <h2 class="text-gray-900 title-font font-medium">Preliminary Usability Test Results
+                                Presentation</h2>
+                            <div class="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p class="text-gray-500 text-xs">Coming soon</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                    <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                        <div class="flex-grow">
+                            <h2 class="text-gray-900 title-font font-medium">Usability Test Report</h2>
+                            <div class="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p class="text-gray-500 text-xs">Coming soon</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="m-16">
+        <h1 class="flex justify-center sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Research
+            Assignments</h1>
+        <div class="h-1 bg-gray-200 rounded overflow-hidden flex justify-center" bis_skin_checked="1">
+            <div class="w-72 h-full bg-blue-500" bis_skin_checked="1"></div>
+        </div>
+        <div class="flex justify-center">
+            <div class="flex flex-wrap mx-auto md:flex-nowrap p-12">
+                <a href="">
+                    <div class="flex w-full">
+                        <div
+                            class="relative flex flex-col items-start m-1 transition duration-300 ease-in-out delay-150 transform bg-white shadow-2xl rounded-xl md:w-80 md:-ml-16 md:hover:-translate-x-16 md:hover:-translate-y-8">
+                            <div class="px-6 py-8">
+                                <h4 class="mt-4 text-2xl font-semibold text-neutral-600">
+                                    <span class="">Topic: Feature Layer</span>
+                                </h4>
+                                <p class="mt-4 text-base font-normal text-gray-500 leading-relax">I am currently working
+                                    on a ArcGIS project with professor Robert Pastel. In this project, we use a special
+                                    component called Feature layer. A feature layer is a grouping of similar geographic
+                                    features, for example, buildings, parcels, cities, roads, and earthquake epicenters.
+                                    Features can be points, lines, or polygons (areas). Feature layers are most
+                                    appropriate for visualizing data on top of base-maps This is used in our project to
+                                    mark the various features in our maps through a specific time period. I am going to
+                                    present the Introduction to feature layer and explore various aspects in feature
+                                    layer than take quick walkthrough of how we implemented it in our project.</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="">
+                    <div class="flex w-full">
+                        <div
+                            class="relative flex flex-col items-start m-1 transition duration-300 ease-in-out delay-150 transform bg-white shadow-2xl rounded-xl md:w-80 md:-ml-16 md:hover:-translate-x-16 md:hover:-translate-y-8">
+                            <div class="px-6 py-8">
+                                <h4 class="mt-4 text-2xl font-semibold text-neutral-600">
+                                    <span class="">Topic Paper</span>
+                                </h4>
+                                <p class="mt-4 text-base font-normal text-gray-500 leading-relax">yet to submit</p>
+                                <p class="mt-4 opacity-0 text-base font-normal text-white leading-relax">I am currently
+                                    working
+                                    on a ArcGIS project with professor Robert Pastel. In this project, we use a special
+                                    component called Feature layer. A feature layer is a grouping of similar geographic
+                                    features, for example, buildings, parcels, cities, roads, and earthquake epicenters.
+                                    Features can be points, lines, or polygons (areas). Feature layers are most
+                                    appropriate for visualizing data on top of base-maps This is used in our project to
+                                    mark the various features in our maps through a specific time period. class="mt-4
+                                    text-base font-normal text-white leading-relax"class="mt-4 text-base font-normal
+                                    text-white"</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="">
+                    <div class="flex w-full">
+                        <div
+                            class="relative flex flex-col items-start m-1 transition duration-300 ease-in-out delay-150 transform bg-white shadow-2xl rounded-xl md:w-80 md:-ml-16 md:hover:-translate-x-16 md:hover:-translate-y-8">
+                            <div class="px-6 py-8">
+                                <h4 class="mt-4 text-2xl font-semibold text-neutral-600">
+                                    <span class="">Topic Slides</span>
+                                </h4>
+                                <p class="mt-4 text-base font-normal text-gray-500 leading-relax">yet to submit</p>
+                                <p class="mt-4 opacity-0 text-base font-normal text-white leading-relax">I am currently
+                                    working
+                                    on a ArcGIS project with professor Robert Pastel. In this project, we use a special
+                                    component called Feature layer. A feature layer is a grouping of similar geographic
+                                    features, for example, buildings, parcels, cities, roads, and earthquake epicenters.
+                                    Features can be points, lines, or polygons (areas). Feature layers are most
+                                    appropriate for visualizing data on top of base-maps This is used in our project to
+                                    mark the various features in our maps through a specific time period. class="mt-4
+                                    text-base font-normal text-white leading-relax"class="mt-4 text-base font-normal
+                                    text-white"</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ######                Team start             #########-->
+    <section class="m-16">
+        <h1 class="flex justify-center sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900" id="team">Team
+        </h1>
+        <div class="h-1 bg-gray-200 rounded overflow-hidden flex justify-center" bis_skin_checked="1">
+            <div class="w-24 h-full bg-blue-500" bis_skin_checked="1"></div>
+        </div>
+        <div class="flex-wrap items-center justify-center gap-8 text-center sm:flex">
+            <div class="w-full px-4 py-4 mt-6 bg-white rounded-lg shadow-lg sm:w-1/2 md:w-1/2 lg:w-1/4">
+                <div class="flex-shrink-0">
+                    <div class="flex items-center justify-center w-12 h-12 mx-auto text-white bg-blue-500 rounded-md">
+                        <svg width="20" height="20" fill="currentColor" class="w-6 h-6" viewBox="0 0 1792 1792"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M491 1536l91-91-235-235-91 91v107h128v128h107zm523-928q0-22-22-22-10 0-17 7l-542 542q-7 7-7 17 0 22 22 22 10 0 17-7l542-542q7-7 7-17zm-54-192l416 416-832 832h-416v-416zm683 96q0 53-37 90l-166 166-416-416 166-165q36-38 90-38 53 0 91 38l235 234q37 39 37 91z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="py-4 text-2xl font-semibold text-gray-700 sm:text-xl">
+                    UX-Experts
+                </h3>
+                <ul class="py-4 text-gray-500 text-md">
+                    <li>Vishnu Rapuru</li>
+                    <li>Vrushali Shinde</li>
+                    <li class="py-4 opacity-0">Austin Keene</li>
+                    <li class="py-4 opacity-0">Colin VanDelden</li>
+                </ul>
+            </div>
+            <div
+                class="w-full px-4 py-4 mt-12 bg-white rounded-lg shadow-lg sm:w-1/2 md:w-1/2 lg:w-1/4 sm:mt-16 md:mt-20 lg:mt-24 0">
+                <div class="flex-shrink-0">
+                    <div class="flex items-center justify-center w-12 h-12 mx-auto text-white bg-blue-500 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="py-4 text-2xl font-semibold text-gray-700 sm:text-xl">
+                    Developers
+                </h3>
+                <ul class="py-4 text-gray-500 text-md">
+                    <li>Aakash Gunda</li>
+                    <li>Austin Keene</li>
+                    <li>Colin VanDelden</li>
+                    <li>Erik van der Grijn</li>
+                    <li>Jamarri Jackson</li>
+                    <li>Max Jorgenson</li>
+                </ul>
+            </div>
+            <div class="w-full px-4 py-4 mt-6 bg-white rounded-lg shadow-lg sm:w-1/2 md:w-1/2 lg:w-1/4">
+                <div class="flex-shrink-0">
+                    <div class="flex items-center justify-center w-12 h-12 mx-auto text-white bg-blue-500 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+                <h3 class="py-4 text-2xl font-semibold text-gray-700 sm:text-xl ">
+                    Scientists
+                </h3>
+                <ul class="py-4 text-gray-500 text-md">
+                    <li>Kaitlyn Roose</li>
+                    <li class="py-4 opacity-0 ">Austin Keene</li>
+                    <li class="py-4 opacity-0 ">Colin VanDelden</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- ######                Team End             #########-->
+
+    <footer class="text-gray-600 body-font">
+        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col" bis_skin_checked="1">
+            <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 rounded-full text-blue-500" viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path
+                        d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+                </svg>
+                <span class="ml-3 text-xl">Esports Stats</span>
+            </a>
+            <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">©
+                2023 —
+                <a href="mailto:vrapuru@mtu.edu" class="text-gray-600 ml-1" rel="noopener noreferrer"
+                    target="_blank">@Vishnu Vardhan Reddy Rapuru</a>
+            </p>
+            <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+                <a class="text-gray-500">
+                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        class="w-5 h-5" viewBox="0 0 24 24">
+                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                    </svg>
+                </a>
+                <a class="ml-3 text-gray-500">
+                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        class="w-5 h-5" viewBox="0 0 24 24">
+                        <path
+                            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+                        </path>
+                    </svg>
+                </a>
+                <a class="ml-3 text-gray-500">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                    </svg>
+                </a>
+                <a class="ml-3 text-gray-500">
+                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                        <path stroke="none"
+                            d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z">
+                        </path>
+                        <circle cx="4" cy="4" r="2" stroke="none"></circle>
+                    </svg>
+                </a>
+            </span>
+        </div>
+    </footer>
 </body>
 
 </html>
